@@ -1,0 +1,387 @@
+<div class="relative min-h-screen bg-tila-dark text-slate-100 overflow-x-hidden selection:bg-purple-500 selection:text-white font-sans">
+  
+  <!-- Ambient Radial Background Glows -->
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-purple-900/25 via-indigo-900/10 to-transparent blur-[120px] pointer-events-none z-0"></div>
+  <div class="fixed top-[40%] right-[-10%] w-[600px] h-[600px] bg-purple-600/15 blur-[140px] pointer-events-none z-0 animate-pulse-slow"></div>
+  <div class="fixed bottom-[10%] left-[-10%] w-[600px] h-[600px] bg-cyan-600/10 blur-[150px] pointer-events-none z-0"></div>
+
+  <!-- Navigation Header -->
+  <app-navbar></app-navbar>
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="relative z-10 pt-32 lg:pt-44 pb-20 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- Left Hero Content -->
+      <div class="lg:col-span-7 space-y-8 text-left">
+        
+        <!-- AI Pill Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-900/40 via-purple-600/30 to-indigo-900/40 border border-purple-400/30 backdrop-blur-md shadow-glow-violet animate-fadeIn">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+          <span class="text-xs sm:text-sm font-semibold tracking-wider text-purple-200 uppercase font-heading">
+            POWERED BY O3-MINI, CLAUDE 3.7 & GEMINI 2.0
+          </span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-heading leading-[1.1]">
+          The Fastest Way <br class="hidden sm:inline"/>
+          <span class="inline-flex items-center gap-3 align-baseline">
+            <span class="inline-block px-4 py-1 rounded-2xl bg-gradient-to-r from-purple-500 via-indigo-600 to-purple-700 text-white font-bold text-3xl sm:text-5xl shadow-lg border border-purple-300/30 -rotate-2">
+              TILA
+            </span>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-purple-300">
+              To Learn & Teach
+            </span>
+          </span>
+        </h1>
+
+        <!-- Sub-bullet points matching user design -->
+        <div class="space-y-3 pt-2 text-slate-300 text-base sm:text-lg lg:text-xl font-medium">
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs mt-0.5 border border-purple-500/30">1</div>
+            <p class="text-slate-200">Understand & Chat With Your Docs, Links & Videos</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs mt-0.5 border border-purple-500/30">2</div>
+            <p class="text-slate-200">Automate Complex Learning & Quiz Workflows With AI</p>
+          </div>
+        </div>
+
+        <!-- Hero Action Buttons -->
+        <div class="flex flex-wrap items-center gap-4 pt-4">
+          <button 
+            type="button"
+            class="px-8 py-4 rounded-full bg-gradient-to-r from-slate-100 to-slate-200 text-slate-900 font-bold text-base hover:bg-white shadow-xl shadow-purple-900/20 hover:scale-[1.02] transition-all duration-200"
+          >
+            Get started 
+          </button>
+          <button 
+            type="button"
+            class="px-8 py-4 rounded-full bg-tila-surface/90 hover:bg-tila-surface border border-white/10 text-white font-semibold text-base backdrop-blur-md hover:border-purple-400/40 transition-all duration-200"
+          >
+            Log In
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Right Hero Showcase Card (Futuristic Interactive Graphic) -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative group mx-auto max-w-md lg:max-w-none">
+          
+          <!-- Outer Glowing Ambient Aura -->
+          <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 via-indigo-500 to-cyan-400 rounded-3xl blur-2xl opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+          
+          <!-- Glass Panel Container -->
+          <div class="relative rounded-3xl bg-tila-surface/90 border border-white/15 p-6 backdrop-blur-2xl shadow-2xl overflow-hidden min-h-[420px] flex flex-col justify-between">
+            
+            <!-- Card Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                <span class="ml-2 text-xs font-mono text-slate-400">Physics_Chapter2_RAG.pdf</span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                LIVE AI DEMO
+              </span>
+            </div>
+
+            <!-- Central Interactive Visual / Chat Preview -->
+            <div class="my-6 space-y-4">
+              
+              <!-- User Message Bubble -->
+              <div class="flex justify-end">
+                <div class="bg-purple-600/30 border border-purple-400/30 rounded-2xl rounded-tr-none px-4 py-3 text-xs sm:text-sm text-slate-100 max-w-[85%] backdrop-blur-md">
+                  "Explain Newton's second law from Chapter 2 and generate 3 practice MCQs."
+                </div>
+              </div>
+
+              <!-- AI Answer Response Bubble -->
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-500 to-cyan-400 flex items-center justify-center font-bold text-xs text-white shrink-0 shadow-glow-violet">
+                  AI
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl rounded-tl-none px-4 py-3 text-xs sm:text-sm text-slate-200 max-w-[90%] backdrop-blur-md space-y-2">
+                  <p class="font-semibold text-purple-300">Grounded from Physics_Chapter2.pdf (p. 42-45):</p>
+                  <p class="text-slate-300">
+                    Newton's Second Law states that force equals mass times acceleration (F = m · a). Acceleration is directly proportional to net force...
+                  </p>
+                  
+                  <!-- Simulated MCQ snippet -->
+                  <div class="mt-2 pt-2 border-t border-white/10 space-y-1.5">
+                    <div class="text-[11px] font-semibold text-cyan-300">Q1. What happens to acceleration if force is doubled?</div>
+                    <div class="flex items-center gap-2 text-[11px] text-slate-300 bg-white/5 p-1.5 rounded-lg border border-purple-500/30">
+                      <span class="w-3.5 h-3.5 rounded-full bg-purple-500 flex items-center justify-center text-[9px] font-bold text-white">✓</span>
+                      <span>A) Acceleration doubles</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Play Overlay Badge -->
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-purple-600/40 border border-purple-400/40 flex items-center justify-center text-white">
+                  <svg class="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+                <span class="text-slate-300 font-medium">Watch 1-Min Interactive Workflow</span>
+              </div>
+              <span class="text-purple-400 font-mono text-[11px]">01:24</span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- USE CASES / HOW IT WORKS SECTION -->
+  <section id="use-cases" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+      <div class="inline-flex items-center px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-400/20 text-purple-300 text-xs font-semibold uppercase tracking-widest font-heading">
+        AI-POWERED WORKFLOW
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold font-heading text-white tracking-tight leading-tight">
+        Upload • Ask • Summarize • Create <br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 font-serif italic font-normal">
+          How it works
+        </span>
+      </h2>
+      <p class="text-slate-400 text-base sm:text-lg font-medium pt-2">
+        Does switching between 100 tabs, note-taking apps, and generic ChatGPT prompts sound like you?
+      </p>
+    </div>
+
+    <!-- Horizontal Step-by-Step Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Step 01 -->
+      <div class="glass-panel glass-panel-hover p-6 rounded-3xl flex flex-col justify-between space-y-6 relative overflow-hidden group">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold tracking-wider text-purple-300 uppercase">Step</span>
+          <span class="w-8 h-8 rounded-full bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-xs font-bold text-purple-200">
+            01
+          </span>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold font-heading text-white mb-2">Import Your Sources</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Add anything from PDFs, to word documents, to lecture slides & Youtube videos — Tila can extract and understand it all.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-purple-400 font-semibold group-hover:text-purple-300">
+          <span>PDF, DOCX, TXT</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <!-- Step 02 -->
+      <div class="glass-panel glass-panel-hover p-6 rounded-3xl flex flex-col justify-between space-y-6 relative overflow-hidden group">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold tracking-wider text-purple-300 uppercase">Step</span>
+          <span class="w-8 h-8 rounded-full bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-xs font-bold text-purple-200">
+            02
+          </span>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold font-heading text-white mb-2">Summarise & Chat</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Summarise & chat with your documents to dive deeper. Want to really master a complex chapter? Get instant grounded answers.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-purple-400 font-semibold group-hover:text-purple-300">
+          <span>Grounding RAG</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <!-- Step 03 (Elevated Highlight Card) -->
+      <div class="relative p-6 rounded-3xl bg-gradient-to-b from-purple-600 to-indigo-700 text-white flex flex-col justify-between space-y-6 shadow-glow-violet transform lg:-translate-y-2 transition-transform duration-300">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold tracking-wider text-purple-200 uppercase">Step</span>
+          <span class="w-8 h-8 rounded-full bg-white/20 border border-white/30 flex items-center justify-center text-xs font-bold text-white">
+            03
+          </span>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold font-heading text-white mb-2">AI Text Editor</h3>
+          <p class="text-xs sm:text-sm text-purple-100 leading-relaxed">
+            Write, edit, and paraphrase in an AI text-editor. Outline, draft, and fine-tune your notes with AI strictly grounded in your materials.
+          </p>
+        </div>
+        <div class="pt-4">
+          <button class="w-full py-2.5 rounded-full bg-white text-purple-900 font-bold text-xs hover:bg-slate-100 transition-colors shadow-md">
+            Get started 
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 04 -->
+      <div class="glass-panel glass-panel-hover p-6 rounded-3xl flex flex-col justify-between space-y-6 relative overflow-hidden group">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold tracking-wider text-purple-300 uppercase">Step</span>
+          <span class="w-8 h-8 rounded-full bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-xs font-bold text-purple-200">
+            04
+          </span>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold font-heading text-white mb-2">Automate Workflows</h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Automate complex, repetitive revision workflows. Generate practice MCQs, study flashcards, and exam prep packages automatically.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-purple-400 font-semibold group-hover:text-purple-300">
+          <span>MCQ & Quiz Generator</span>
+          <span>→</span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section id="features" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-white/10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+      <div class="inline-flex items-center px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-400/20 text-purple-300 text-xs font-semibold uppercase tracking-widest font-heading">
+        ANALYZE & LEARN
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold font-heading text-white tracking-tight">
+        What you can use <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Tila</span> for
+      </h2>
+      <p class="text-slate-400 text-base sm:text-lg font-medium">
+        Extract insights from research, textbooks, and notes at lightning speed.
+      </p>
+      <div class="pt-2">
+        <button class="px-6 py-2.5 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold text-sm hover:shadow-glow-violet transition-all">
+          Get started 
+        </button>
+      </div>
+    </div>
+
+    <!-- Features Bento Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Feature Card 1 -->
+      <div class="glass-panel glass-panel-hover p-8 rounded-3xl space-y-6 relative overflow-hidden group">
+        <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-purple-300">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold font-heading text-white mb-2">Detailed, structured AI summaries</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Automatically generated summaries for all of your knowledge — from complex academic PDFs to lecture slides and videos.
+          </p>
+        </div>
+        <!-- Mock UI card inner preview -->
+        <div class="bg-tila-dark/80 border border-white/10 rounded-2xl p-4 text-xs text-slate-300 space-y-2">
+          <div class="flex items-center justify-between text-purple-300 font-mono text-[11px]">
+            <span>Summary Breakdown</span>
+            <span>3 Key Concepts</span>
+          </div>
+          <div class="h-2 bg-purple-500/30 rounded-full overflow-hidden">
+            <div class="w-3/4 h-full bg-gradient-to-r from-purple-500 to-cyan-400"></div>
+          </div>
+          <p class="text-slate-400 text-[11px] font-mono">1. Kinetic theory application • 2. Ideal gas law derivation</p>
+        </div>
+      </div>
+
+      <!-- Feature Card 2 -->
+      <div class="glass-panel glass-panel-hover p-8 rounded-3xl space-y-6 relative overflow-hidden group">
+        <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold font-heading text-white mb-2">Chat with your documents</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Skip reading 100s of pages or watching hours of video. Extract exact citations and answers you need, instantly.
+          </p>
+        </div>
+        <!-- Mock UI card inner preview -->
+        <div class="bg-tila-dark/80 border border-white/10 rounded-2xl p-4 text-xs text-slate-300 space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-green-400"></span>
+            <span class="font-semibold text-slate-200">Q: What is the main proof on Page 14?</span>
+          </div>
+          <div class="pl-4 border-l-2 border-purple-500 text-slate-400 text-[11px]">
+            "Theorem 3.2 shows convergence under Lipschitz continuous gradient assumptions..."
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Card 3 -->
+      <div class="glass-panel glass-panel-hover p-8 rounded-3xl space-y-6 relative overflow-hidden group">
+        <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-300">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold font-heading text-white mb-2">Easy Collaboration & Study Hubs</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Organize learning materials into subject notebooks and share study environments with peers and educators seamlessly.
+          </p>
+        </div>
+        <div class="flex items-center gap-3 pt-2">
+          <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-mono">Physics 101</span>
+          <span class="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-mono">Machine Learning</span>
+        </div>
+      </div>
+
+      <!-- Feature Card 4 -->
+      <div class="glass-panel glass-panel-hover p-8 rounded-3xl space-y-6 relative overflow-hidden group">
+        <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-purple-300">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold font-heading text-white mb-2">Smart Quiz & Automation Builder</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Streamline your entire revision workflow fast with custom AI prompt templates, auto-generated MCQs, and flashcard queues.
+          </p>
+        </div>
+        <div class="bg-white/5 p-3 rounded-xl border border-white/10 flex items-center justify-between text-xs">
+          <span class="text-slate-300">Auto-generate 10 MCQs from Chapter 3</span>
+          <span class="px-2 py-1 rounded bg-purple-500 text-white font-bold text-[10px]">RUN</span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 border-t border-white/10 py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-2">
+        <span class="font-heading font-bold text-xl text-white">TILA<span class="text-purple-500"></span></span>
+        <span class="text-slate-500 text-xs sm:text-sm">© 2026 TILA. Teaching & Intelligent Learning Assistant.</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-slate-400">
+        <a href="#features" class="hover:text-white transition-colors">Features</a>
+        <a href="#use-cases" class="hover:text-white transition-colors">Use Cases</a>
+        <a href="#" class="hover:text-white transition-colors">Privacy</a>
+        <a href="#" class="hover:text-white transition-colors">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
