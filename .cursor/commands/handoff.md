@@ -11,7 +11,7 @@ Persist what was done so the next chat/agent can continue. Uses `.agents/skills/
    - What was done
    - Decisions made
    - Files touched
-   - Tests / validation run
+   - Tests / validation run (include `/TestCode` verdict when available)
    - Open questions / next steps
    - Corrections (if human overrode the AI)
 4. Update `docs/brain/roadmap.md` phase status if a phase moved.
@@ -28,3 +28,4 @@ Short confirmation: path to task-history entry, roadmap/gaps/ADR changes, sugges
 - Append-only history.
 - No unrelated refactors.
 - Do not delete prior notes.
+- Feature workflow reminder: `/StartTask` → `/MakePlan` → `/ImplementPlan` → `/ReviewCode` → `/TestCode` → `/Handoff`.
