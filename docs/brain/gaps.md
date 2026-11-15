@@ -15,7 +15,10 @@
 - **Alembic present:** `alembic.ini` exists while SoR is Mongo — clarify or remove in a later cleanup.
 - **Pending ADRs:** storage strategy (local vs S3) and background-job runner (in-process vs Redis/ARQ/Celery) are not decided — do not invent production locks without an ADR under `docs/decisions/`.
 - **Dependency tooling:** Import Linter / Pydeps / Madge / Dependency Cruiser deferred; use `docs/architecture/dependency-map.md` + `scripts/scan-api-imports.py` for now.
+- **Design-system ESLint:** No Atlas-style type-role Tailwind lint yet (add after CSS roles exist).
+- **Rich feature graph / circular deps:** Start with ESLint `no-restricted-imports`; expand only if needed.
+- **ROUTE_ALLOWLIST:** `api/v1/auth.py` and `users.py` mount FastAPI Users directly — shrink when controllers wrap them.
 
 ## Closed
 
-- (none yet beyond documenting agent architecture / context engineering)
+- Executable architecture lint + husky/lint-staged + CI check workflow (ADR-0004).

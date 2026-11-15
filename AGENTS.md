@@ -80,8 +80,13 @@ From repo root (`TILA/`):
 ```bash
 npm run setup    # once
 npm run dev      # API :8000 + Angular :4200
-npm run check    # ruff + tsc
+npm run lint     # ruff + eslint (verify)
+npm run check    # lint + format --check + arch tests + tsc
 ```
+
+**Architecture is executable:** Web ESLint and API AST tests enforce AGENTS rules.  
+`git commit` runs Husky → lint-staged (auto-fix staged files). Do **not** use `--no-verify`.  
+CI (`.github/workflows/check.yml`) runs full `npm run check` so hooks cannot be bypassed on merge.
 
 ## Feature workflow
 

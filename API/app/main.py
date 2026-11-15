@@ -23,8 +23,7 @@ settings = get_settings()
 app = FastAPI(
     title="TILA - Teaching & Intelligent Learning Assistant API",
     description=(
-        "Backend API for TILA, featuring LLM Gateway, RAG pipeline, "
-        "document management, and chat."
+        "Backend API for TILA, featuring LLM Gateway, RAG pipeline, document management, and chat."
     ),
     version="1.0.0",
     lifespan=lifespan,

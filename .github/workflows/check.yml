@@ -1,0 +1,39 @@
+name: check
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            Web/package-lock.json
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install root tooling
+        run: npm ci
+
+      - name: Setup API
+        run: |
+          python -m venv API/venv
+          API/venv/bin/pip install -U pip
+          API/venv/bin/pip install -e "API/[dev]"
+
+      - name: Setup Web
+        run: npm ci --prefix Web
+
+      - name: Full verify
+        run: npm run check

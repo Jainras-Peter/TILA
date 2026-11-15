@@ -4,17 +4,20 @@ Python 3.12 + FastAPI. Package root: `API/app`.
 
 ## Layers
 
-| Layer | Path | Responsibility |
-|-------|------|----------------|
-| Routes | `app/api/v1/*.py` | Path, method, deps wiring; no logic |
-| Controllers | `app/controllers/` | Parse/validate HTTP, call service, map to response |
-| Services | `app/services/` | Business rules; no FastAPI imports for domain |
-| Repositories | `app/repositories/` | Mongo only |
-| Core | `app/core/` | Config, DB, security, exceptions, logging, lifespan |
-| Middleware | `app/middleware/` | Auth, CORS, errors, rate limit, request id |
-| AI gateway | `app/ai/gateway/` | Only LLM door |
-| Factories | `app/factories/` | Embeddings, vector stores, loaders, chunkers |
-| Workers | `app/workers/` | Background jobs |
+| Layer | Path | Allowed dependency | Must not |
+|-------|------|--------------------|----------|
+| Routes | `app/api/v1/*.py` | Controllers | Services, repositories |
+| Controllers | `app/controllers/` | Services | Repositories, motor |
+| Services | `app/services/` | Repositories, AI gateway, domain | FastAPI, motor |
+| Repositories | `app/repositories/` | Database / motor / domain | Controllers, services |
+| AI gateway | `app/ai/gateway/` | External LLM SDKs (HTTP) | Used as the only LLM door |
+| Core | `app/core/` | Config / infrastructure | — |
+| Factories | `app/factories/` | Embeddings, vector, loaders, chunkers | Second LLM stack |
+| Workers | `app/workers/` | Services | — |
+
+Services may orchestrate without a repository (external calls, pure orchestration).
+
+**Executable:** `API/tests/unit/architecture/test_import_boundaries.py` (AST). Shrink `ROUTE_ALLOWLIST` over time (`auth.py` / `users.py` currently mount FastAPI Users routers directly).
 
 ## API versioning
 
@@ -43,6 +46,10 @@ Skill: `.agents/skills/tila-backend-endpoint/SKILL.md`.
 ```bash
 cd API && venv/bin/pytest
 cd API && venv/bin/ruff check app tests
+cd API && venv/bin/pytest tests/unit/architecture -q
 ```
 
-From root: `npm run test:api`, `npm run lint`.
+From root: `npm run test:api`, `npm run test:arch`, `npm run lint`, `npm run check`.
+
+Pre-commit (lint-staged): `ruff check --fix` + `ruff format` on staged Python.  
+CI / `npm run check`: verify only (`ruff check`, `ruff format --check`, arch tests).

@@ -7,8 +7,11 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit"
   },
+
   "dependencies": {
     "@angular/animations": "^18.2.0",
     "@angular/common": "^18.2.0",
@@ -25,12 +28,18 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.0",
+    "@angular-eslint/eslint-plugin": "^18.4.3",
+    "@angular-eslint/eslint-plugin-template": "^18.4.3",
+    "@angular-eslint/template-parser": "^18.4.3",
+    "@angular-eslint/utils": "^18.4.3",
     "@angular/cli": "^18.2.0",
     "@angular/compiler-cli": "^18.2.0",
     "@types/node": "^20.11.0",
     "autoprefixer": "^10.4.19",
+    "eslint": "^9.39.5",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
-    "typescript": "~5.5.2"
+    "typescript": "~5.5.2",
+    "typescript-eslint": "^8.72.2"
   }
 }

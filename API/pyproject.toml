@@ -45,3 +45,7 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
+ignore = [
+  "E501",  # line length: prefer readable gateway/tests
+  "B904",  # raise-from: gateway providers wrap errors; revisit when hardening
+]

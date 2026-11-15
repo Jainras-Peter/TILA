@@ -1,16 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
-import { environment } from '../../../../environments/environment';
 import { LoginRequest, RegisterRequest } from '../../../core/models/user.model';
 import { ApiService } from '../../../core/services/api.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthFeatureService {
   private readonly api = inject(ApiService);
-  private readonly http = inject(HttpClient);
-  private readonly baseUrl = environment.apiBaseUrl;
 
   seedCsrf(): Observable<{ ok: boolean }> {
     return this.api.get<{ ok: boolean }>('/auth/csrf');
@@ -28,18 +25,13 @@ export class AuthFeatureService {
       'Content-Type': 'application/x-www-form-urlencoded',
     });
     // 204 No Content — avoid JSON parse of empty body
-    return this.http
-      .post(`${this.baseUrl}/auth/cookie/login`, body.toString(), {
-        headers,
-        responseType: 'text',
-      })
+    return this.api
+      .postText('/auth/cookie/login', body.toString(), { headers })
       .pipe(map(() => undefined));
   }
 
   logout(): Observable<void> {
-    return this.http
-      .post(`${this.baseUrl}/auth/cookie/logout`, null, { responseType: 'text' })
-      .pipe(map(() => undefined));
+    return this.api.postText('/auth/cookie/logout', null).pipe(map(() => undefined));
   }
 
   getMe(): Observable<{

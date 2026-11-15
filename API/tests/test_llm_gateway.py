@@ -1,18 +1,17 @@
 import unittest
-import asyncio
 from unittest.mock import patch
 
-from app.ai.gateway.models.request import LLMRequest
-from app.ai.gateway.models.response import LLMResponse, LLMAttemptLog
-from app.ai.gateway.interfaces.llm_provider import LLMProvider
-from app.ai.gateway.factory.provider_factory import LLMProviderFactory
-from app.ai.gateway.services.llm_service import LLMService
 from app.ai.gateway.config import gateway_config
 from app.ai.gateway.exceptions import (
-    LLMProviderNotFoundError,
-    LLMProviderAPIError,
     LLMAllProvidersFailedError,
+    LLMProviderAPIError,
+    LLMProviderNotFoundError,
 )
+from app.ai.gateway.factory.provider_factory import LLMProviderFactory
+from app.ai.gateway.interfaces.llm_provider import LLMProvider
+from app.ai.gateway.models.request import LLMRequest
+from app.ai.gateway.models.response import LLMAttemptLog, LLMResponse
+from app.ai.gateway.services.llm_service import LLMService
 
 
 class MockSuccessProvider(LLMProvider):
@@ -44,7 +43,9 @@ class MockFailingProvider(LLMProvider):
         return "mock_failing"
 
     async def generate(self, request: LLMRequest) -> LLMResponse:
-        raise LLMProviderAPIError(self.provider_name, "Simulated transient 500 failure", status_code=500)
+        raise LLMProviderAPIError(
+            self.provider_name, "Simulated transient 500 failure", status_code=500
+        )
 
 
 class MockPermanentFailingProvider(LLMProvider):
@@ -57,7 +58,6 @@ class MockPermanentFailingProvider(LLMProvider):
 
 
 class TestLLMGateway(unittest.IsolatedAsyncioTestCase):
-
     async def test_provider_factory(self):
         LLMProviderFactory.register_provider("mock_success", MockSuccessProvider)
         provider = LLMProviderFactory.get_provider("mock_success")
@@ -85,11 +85,12 @@ class TestLLMGateway(unittest.IsolatedAsyncioTestCase):
         LLMProviderFactory.register_provider("mock_failing", MockFailingProvider)
         LLMProviderFactory.register_provider("mock_success", MockSuccessProvider)
 
-        with patch.object(gateway_config, "MAIN_LLM_PROVIDER", "mock_failing"), \
-             patch.object(gateway_config, "FALLBACK_LLM_PROVIDER", "mock_success"), \
-             patch.object(gateway_config, "MAIN_LLM_RETRY_COUNT", 1), \
-             patch.object(gateway_config, "MAIN_LLM_RETRY_INTERVAL", 0.01):
-
+        with (
+            patch.object(gateway_config, "MAIN_LLM_PROVIDER", "mock_failing"),
+            patch.object(gateway_config, "FALLBACK_LLM_PROVIDER", "mock_success"),
+            patch.object(gateway_config, "MAIN_LLM_RETRY_COUNT", 1),
+            patch.object(gateway_config, "MAIN_LLM_RETRY_INTERVAL", 0.01),
+        ):
             service = LLMService()
             req = LLMRequest(prompt="Testing Fallback")
             resp = await service.generate(req)
@@ -108,11 +109,12 @@ class TestLLMGateway(unittest.IsolatedAsyncioTestCase):
         LLMProviderFactory.register_provider("mock_perm_failing", MockPermanentFailingProvider)
         LLMProviderFactory.register_provider("mock_success", MockSuccessProvider)
 
-        with patch.object(gateway_config, "MAIN_LLM_PROVIDER", "mock_perm_failing"), \
-             patch.object(gateway_config, "FALLBACK_LLM_PROVIDER", "mock_success"), \
-             patch.object(gateway_config, "MAIN_LLM_RETRY_COUNT", 5), \
-             patch.object(gateway_config, "MAIN_LLM_RETRY_INTERVAL", 0.01):
-
+        with (
+            patch.object(gateway_config, "MAIN_LLM_PROVIDER", "mock_perm_failing"),
+            patch.object(gateway_config, "FALLBACK_LLM_PROVIDER", "mock_success"),
+            patch.object(gateway_config, "MAIN_LLM_RETRY_COUNT", 5),
+            patch.object(gateway_config, "MAIN_LLM_RETRY_INTERVAL", 0.01),
+        ):
             service = LLMService()
             req = LLMRequest(prompt="Testing Permanent Error Fast Fallback")
             resp = await service.generate(req)
@@ -129,11 +131,12 @@ class TestLLMGateway(unittest.IsolatedAsyncioTestCase):
     async def test_all_providers_exhausted(self):
         LLMProviderFactory.register_provider("mock_failing", MockFailingProvider)
 
-        with patch.object(gateway_config, "MAIN_LLM_PROVIDER", "mock_failing"), \
-             patch.object(gateway_config, "FALLBACK_LLM_PROVIDER", "mock_failing"), \
-             patch.object(gateway_config, "MAIN_LLM_RETRY_COUNT", 0), \
-             patch.object(gateway_config, "FALLBACK_LLM_RETRY_COUNT", 0):
-
+        with (
+            patch.object(gateway_config, "MAIN_LLM_PROVIDER", "mock_failing"),
+            patch.object(gateway_config, "FALLBACK_LLM_PROVIDER", "mock_failing"),
+            patch.object(gateway_config, "MAIN_LLM_RETRY_COUNT", 0),
+            patch.object(gateway_config, "FALLBACK_LLM_RETRY_COUNT", 0),
+        ):
             service = LLMService()
             req = LLMRequest(prompt="Testing Double Failure")
 

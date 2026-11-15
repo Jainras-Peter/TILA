@@ -8,7 +8,6 @@ import { spawnSync } from "node:child_process"
 import path from "node:path"
 
 const root = process.cwd()
-// Support opening either TILA/ or TILA_Workspace/ as the workspace root.
 const tilaRoot = existsSync(path.join(root, "API"))
   ? root
   : existsSync(path.join(root, "TILA", "API"))
@@ -44,24 +43,38 @@ if (pyFiles.length > 0 && existsSync(ruffBin)) {
   }
 }
 
-const tsFiles = [...changed].filter(
+const webLintFiles = [...changed].filter(
   (file) =>
     file.startsWith("Web/src/") &&
-    /\.(ts|tsx)$/.test(file) &&
+    /\.(ts|html)$/.test(file) &&
     existsSync(path.join(tilaRoot, file)),
 )
 
-const tscBin = path.join(tilaRoot, "Web", "node_modules", ".bin", "tsc")
-if (tsFiles.length > 0 && existsSync(tscBin)) {
+const eslintBin = path.join(tilaRoot, "Web", "node_modules", ".bin", "eslint")
+if (webLintFiles.length > 0 && existsSync(eslintBin)) {
+  const rels = webLintFiles.map((f) => path.relative(path.join(tilaRoot, "Web"), f))
   const result = spawnSync(
-    tscBin,
-    ["-p", "tsconfig.app.json", "--noEmit"],
+    eslintBin,
+    ["--max-warnings=0", ...rels],
     {
       cwd: path.join(tilaRoot, "Web"),
       encoding: "utf8",
       timeout: 120_000,
     },
   )
+  if (result.status !== 0) {
+    problems.push(`eslint failed:\n${`${result.stdout ?? ""}${result.stderr ?? ""}`.trim()}`)
+  }
+}
+
+const tsFiles = webLintFiles.filter((f) => f.endsWith(".ts"))
+const tscBin = path.join(tilaRoot, "Web", "node_modules", ".bin", "tsc")
+if (tsFiles.length > 0 && existsSync(tscBin)) {
+  const result = spawnSync(tscBin, ["-p", "tsconfig.app.json", "--noEmit"], {
+    cwd: path.join(tilaRoot, "Web"),
+    encoding: "utf8",
+    timeout: 120_000,
+  })
   if (result.status !== 0) {
     problems.push(`tsc failed:\n${`${result.stdout ?? ""}${result.stderr ?? ""}`.trim()}`)
   }

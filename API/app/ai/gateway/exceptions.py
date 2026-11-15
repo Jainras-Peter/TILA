@@ -1,16 +1,16 @@
-from typing import Optional, Set
-
-RETRYABLE_STATUS_CODES: Set[int] = {408, 429, 500, 502, 503, 504}
-PERMANENT_STATUS_CODES: Set[int] = {400, 401, 403, 404}
+RETRYABLE_STATUS_CODES: set[int] = {408, 429, 500, 502, 503, 504}
+PERMANENT_STATUS_CODES: set[int] = {400, 401, 403, 404}
 
 
 class LLMGatewayException(Exception):
     """Base exception for all LLM Gateway errors."""
+
     is_retryable: bool = False
 
 
 class LLMProviderNotFoundError(LLMGatewayException):
     """Raised when a requested LLM provider is not registered in the provider factory."""
+
     is_retryable: bool = False
 
     def __init__(self, provider_name: str):
@@ -20,12 +20,13 @@ class LLMProviderNotFoundError(LLMGatewayException):
 
 class LLMProviderAPIError(LLMGatewayException):
     """Raised when an LLM provider returns an API error."""
+
     def __init__(self, provider_name: str, message: str, status_code: int = 500):
         super().__init__(f"Provider '{provider_name}' API Error ({status_code}): {message}")
         self.provider_name = provider_name
         self.message = message
         self.status_code = status_code
-        
+
         # Smart classification: If status code is in permanent set (400, 401, 403, 404), it is non-retryable
         if status_code in PERMANENT_STATUS_CODES:
             self.is_retryable = False
@@ -38,6 +39,7 @@ class LLMProviderAPIError(LLMGatewayException):
 
 class LLMTimeoutError(LLMGatewayException):
     """Raised when an LLM request times out."""
+
     is_retryable: bool = True
 
     def __init__(self, provider_name: str, timeout_seconds: float):
@@ -48,6 +50,7 @@ class LLMTimeoutError(LLMGatewayException):
 
 class LLMAllProvidersFailedError(LLMGatewayException):
     """Raised when both main and fallback LLM providers exhaust all retry attempts."""
+
     is_retryable: bool = False
 
     def __init__(self, message: str = "All configured LLM providers (Main & Fallback) failed."):
@@ -74,7 +77,9 @@ def classify_error_retryability(exc: Exception) -> bool:
 
     # Network, Connection, Timeout errors are retryable
     exc_name = type(exc).__name__.lower()
-    if any(keyword in exc_name for keyword in ["timeout", "connection", "network", "socket", "reset"]):
+    if any(
+        keyword in exc_name for keyword in ["timeout", "connection", "network", "socket", "reset"]
+    ):
         return True
 
     return False

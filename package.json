@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "prepare": "husky",
     "setup": "npm run setup:api && npm run setup:web",
     "setup:api": "cd API && python3.12 -m venv venv && venv/bin/pip install -U pip && venv/bin/pip install -e '.[dev]'",
     "setup:web": "npm --prefix Web install",
@@ -11,12 +12,18 @@
     "dev:web": "npm --prefix Web start -- --proxy-config proxy.conf.json",
     "test": "npm run test:api && npm run test:web",
     "test:api": "cd API && venv/bin/pytest",
+    "test:arch": "cd API && venv/bin/pytest tests/unit/architecture -q",
     "test:web": "npm --prefix Web test -- --watch=false --browsers=ChromeHeadless",
-    "lint": "cd API && venv/bin/ruff check app tests",
-    "check": "npm run lint && npm --prefix Web exec tsc -- -p tsconfig.app.json --noEmit"
+    "lint:api": "cd API && venv/bin/ruff check app tests",
+    "lint:web": "npm --prefix Web run lint",
+    "lint": "npm run lint:api && npm run lint:web",
+    "format:check": "cd API && venv/bin/ruff format --check app tests",
+    "check": "npm run lint && npm run format:check && npm run test:arch && npm --prefix Web run typecheck"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2"
   },
   "engines": {
     "node": ">=18"

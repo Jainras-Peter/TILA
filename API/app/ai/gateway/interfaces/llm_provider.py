@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+
 from app.ai.gateway.models.request import LLMRequest
 from app.ai.gateway.models.response import LLMResponse
 

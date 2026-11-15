@@ -22,13 +22,27 @@ Page / Component
   → /api/v1/* (proxied to :8000 in dev)
 ```
 
+| Layer | May depend on | Must not |
+|-------|---------------|----------|
+| Pages / components | Feature service, `shared/`, `core/models` | `HttpClient`, `fetch`, other features’ internals |
+| Feature services | `ApiService`, models | `HttpClient` (use `ApiService`) |
+| `ApiService` / interceptors | `HttpClient` | Feature UI |
+
 Rules:
 
 - Standalone components only.
-- No raw `HttpClient` in components or pages.
+- No raw `HttpClient` / `fetch` in pages, components, or feature services — **enforced by ESLint** (`Web/eslint.config.mjs`).
+- No cross-feature imports — share via `core/` / `shared/`.
 - Models live in `core/models`.
 - Use `takeUntilDestroyed` for subscriptions.
 - Feature folders: `pages/`, `components/`, `services/` as needed. No barrel files required.
+
+## Lint
+
+```bash
+npm --prefix Web run lint          # verify
+# pre-commit (lint-staged): eslint --fix on staged Web files
+```
 
 ## Recipe: add a feature
 

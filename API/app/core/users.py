@@ -33,9 +33,7 @@ class UserManager(ObjectIDIDMixin, BaseUserManager[User, PydanticObjectId]):
             raise exceptions.UserAlreadyExists()
         return await super().create(user_create, safe=safe, request=request)
 
-    async def authenticate(
-        self, credentials: OAuth2PasswordRequestForm
-    ) -> User | None:
+    async def authenticate(self, credentials: OAuth2PasswordRequestForm) -> User | None:
         user = await User.find_one(User.username == credentials.username)
         if user is None:
             self.password_helper.hash(credentials.password)

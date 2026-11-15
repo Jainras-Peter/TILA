@@ -1,20 +1,19 @@
-import time
-import json
 import asyncio
-import urllib.request
+import json
+import time
 import urllib.error
-from typing import Optional
+import urllib.request
 
 try:
     import httpx
 except ImportError:
     httpx = None
 
-from app.ai.gateway.interfaces.llm_provider import LLMProvider
-from app.ai.gateway.models.request import LLMRequest
-from app.ai.gateway.models.response import LLMResponse, LLMAttemptLog
 from app.ai.gateway.config import gateway_config
 from app.ai.gateway.exceptions import LLMProviderAPIError, LLMTimeoutError
+from app.ai.gateway.interfaces.llm_provider import LLMProvider
+from app.ai.gateway.models.request import LLMRequest
+from app.ai.gateway.models.response import LLMAttemptLog, LLMResponse
 
 
 class GroqProvider(LLMProvider):
@@ -29,15 +28,14 @@ class GroqProvider(LLMProvider):
     async def generate(self, request: LLMRequest) -> LLMResponse:
         api_key = gateway_config.GROQ_API_KEY
         if not api_key:
-            raise LLMProviderAPIError(self.provider_name, "GROQ_API_KEY is not configured.", status_code=401)
+            raise LLMProviderAPIError(
+                self.provider_name, "GROQ_API_KEY is not configured.", status_code=401
+            )
 
         model = request.model or gateway_config.MAIN_LLM_MODEL
         timeout = request.timeout or gateway_config.MAIN_LLM_TIMEOUT
 
-        headers = {
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json"
-        }
+        headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
 
         messages = []
         if request.system_prompt:
@@ -61,7 +59,11 @@ class GroqProvider(LLMProvider):
                     latency_ms = (time.perf_counter() - start_time) * 1000
 
                     if response.status_code != 200:
-                        raise LLMProviderAPIError(self.provider_name, f"Groq HTTP {response.status_code}: {response.text}", status_code=response.status_code)
+                        raise LLMProviderAPIError(
+                            self.provider_name,
+                            f"Groq HTTP {response.status_code}: {response.text}",
+                            status_code=response.status_code,
+                        )
 
                     data = response.json()
                     content = data["choices"][0]["message"]["content"]
@@ -70,7 +72,7 @@ class GroqProvider(LLMProvider):
                         model=model,
                         attempt_number=1,
                         status="success",
-                        latency_ms=round(latency_ms, 2)
+                        latency_ms=round(latency_ms, 2),
                     )
                     return LLMResponse(
                         text=content,
@@ -79,7 +81,7 @@ class GroqProvider(LLMProvider):
                         is_fallback=False,
                         attempts=[attempt],
                         total_latency_ms=round(latency_ms, 2),
-                        metadata={"usage": data.get("usage", {})}
+                        metadata={"usage": data.get("usage", {})},
                     )
             except httpx.TimeoutException:
                 raise LLMTimeoutError(self.provider_name, timeout_seconds=timeout)
@@ -89,18 +91,26 @@ class GroqProvider(LLMProvider):
             # Fallback HTTP call using urllib.request
             def _http_post():
                 json_data = json.dumps(payload).encode("utf-8")
-                req = urllib.request.Request(self.GROQ_API_URL, data=json_data, headers=headers, method="POST")
+                req = urllib.request.Request(
+                    self.GROQ_API_URL, data=json_data, headers=headers, method="POST"
+                )
                 try:
                     with urllib.request.urlopen(req, timeout=timeout) as resp:
                         res_body = resp.read().decode("utf-8")
                         return resp.status, json.loads(res_body)
                 except urllib.error.HTTPError as err:
                     res_body = err.read().decode("utf-8") if err.fp else str(err)
-                    raise LLMProviderAPIError(self.provider_name, f"Groq HTTP {err.code}: {res_body}", status_code=err.code)
+                    raise LLMProviderAPIError(
+                        self.provider_name,
+                        f"Groq HTTP {err.code}: {res_body}",
+                        status_code=err.code,
+                    )
                 except TimeoutError:
                     raise LLMTimeoutError(self.provider_name, timeout_seconds=timeout)
                 except urllib.error.URLError as err:
-                    raise LLMProviderAPIError(self.provider_name, f"Network error: {str(err.reason)}")
+                    raise LLMProviderAPIError(
+                        self.provider_name, f"Network error: {str(err.reason)}"
+                    )
 
             try:
                 status_code, data = await asyncio.to_thread(_http_post)
@@ -111,7 +121,7 @@ class GroqProvider(LLMProvider):
                     model=model,
                     attempt_number=1,
                     status="success",
-                    latency_ms=round(latency_ms, 2)
+                    latency_ms=round(latency_ms, 2),
                 )
                 return LLMResponse(
                     text=content,
@@ -120,9 +130,11 @@ class GroqProvider(LLMProvider):
                     is_fallback=False,
                     attempts=[attempt],
                     total_latency_ms=round(latency_ms, 2),
-                    metadata={"usage": data.get("usage", {})}
+                    metadata={"usage": data.get("usage", {})},
                 )
             except (LLMTimeoutError, LLMProviderAPIError):
                 raise
             except Exception as exc:
-                raise LLMProviderAPIError(self.provider_name, f"Request execution failed: {str(exc)}")
+                raise LLMProviderAPIError(
+                    self.provider_name, f"Request execution failed: {str(exc)}"
+                )

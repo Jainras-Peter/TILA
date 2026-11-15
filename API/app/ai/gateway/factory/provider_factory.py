@@ -1,22 +1,21 @@
-from typing import Dict, Type
-from app.ai.gateway.interfaces.llm_provider import LLMProvider
-from app.ai.gateway.providers.groq.provider import GroqProvider
-from app.ai.gateway.providers.gemini.provider import GeminiProvider
-from app.ai.gateway.providers.openai.provider import OpenAIProvider
 from app.ai.gateway.exceptions import LLMProviderNotFoundError
+from app.ai.gateway.interfaces.llm_provider import LLMProvider
+from app.ai.gateway.providers.gemini.provider import GeminiProvider
+from app.ai.gateway.providers.groq.provider import GroqProvider
+from app.ai.gateway.providers.openai.provider import OpenAIProvider
 
 
 class LLMProviderFactory:
     """Factory for registering and instantiating LLM Providers (Strategy Pattern)."""
 
-    _providers: Dict[str, Type[LLMProvider]] = {
+    _providers: dict[str, type[LLMProvider]] = {
         "groq": GroqProvider,
         "gemini": GeminiProvider,
         "openai": OpenAIProvider,
     }
 
     @classmethod
-    def register_provider(cls, name: str, provider_cls: Type[LLMProvider]) -> None:
+    def register_provider(cls, name: str, provider_cls: type[LLMProvider]) -> None:
         """Register a new LLM provider adapter dynamically."""
         cls._providers[name.lower().strip()] = provider_cls
 

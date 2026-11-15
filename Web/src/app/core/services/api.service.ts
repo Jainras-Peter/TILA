@@ -17,6 +17,18 @@ export class ApiService {
     return this.http.post<T>(`${this.baseUrl}${path}`, body, options);
   }
 
+  /** POST that expects an empty/text body (e.g. 204 cookie login). */
+  postText(
+    path: string,
+    body: string | null = null,
+    options?: { headers?: HttpHeaders },
+  ): Observable<string> {
+    return this.http.post(`${this.baseUrl}${path}`, body, {
+      ...options,
+      responseType: 'text',
+    });
+  }
+
   patch<T>(path: string, body: unknown): Observable<T> {
     return this.http.patch<T>(`${this.baseUrl}${path}`, body);
   }

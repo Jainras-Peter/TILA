@@ -1,20 +1,16 @@
-import time
 import asyncio
 import logging
-from typing import List
+import time
 
-from app.ai.gateway.interfaces.llm_provider import LLMProvider
-from app.ai.gateway.models.request import LLMRequest
-from app.ai.gateway.models.response import LLMResponse, LLMAttemptLog
-from app.ai.gateway.factory.provider_factory import LLMProviderFactory
 from app.ai.gateway.config import gateway_config
 from app.ai.gateway.exceptions import (
-    LLMGatewayException,
     LLMAllProvidersFailedError,
     LLMTimeoutError,
-    LLMProviderAPIError,
     classify_error_retryability,
 )
+from app.ai.gateway.factory.provider_factory import LLMProviderFactory
+from app.ai.gateway.models.request import LLMRequest
+from app.ai.gateway.models.response import LLMAttemptLog, LLMResponse
 
 logger = logging.getLogger("LLMService")
 
@@ -35,7 +31,7 @@ class LLMService:
 
     async def generate(self, request: LLMRequest) -> LLMResponse:
         total_start_time = time.perf_counter()
-        attempt_logs: List[LLMAttemptLog] = []
+        attempt_logs: list[LLMAttemptLog] = []
 
         # 1. Main LLM Attempt Loop
         main_provider_name = self.config.MAIN_LLM_PROVIDER
@@ -44,7 +40,9 @@ class LLMService:
         main_retry_interval = self.config.MAIN_LLM_RETRY_INTERVAL
         main_timeout = request.timeout or self.config.MAIN_LLM_TIMEOUT
 
-        logger.info(f"LLM Gateway initiating request via Main Provider '{main_provider_name}' (Model: '{main_model_name}')")
+        logger.info(
+            f"LLM Gateway initiating request via Main Provider '{main_provider_name}' (Model: '{main_model_name}')"
+        )
 
         for attempt_idx in range(1 + main_retry_count):
             attempt_num = attempt_idx + 1
@@ -64,7 +62,7 @@ class LLMService:
                     model=main_model_name,
                     attempt_number=attempt_num,
                     status="success",
-                    latency_ms=round(latency_ms, 2)
+                    latency_ms=round(latency_ms, 2),
                 )
                 attempt_logs.append(log_entry)
 
@@ -80,19 +78,25 @@ class LLMService:
                 is_retryable = classify_error_retryability(exc)
                 error_type = "Retryable" if is_retryable else "Permanent"
 
-                logger.warning(f"Main Provider '{main_provider_name}' Attempt {attempt_num} failed ({error_type}): {error_msg}")
+                logger.warning(
+                    f"Main Provider '{main_provider_name}' Attempt {attempt_num} failed ({error_type}): {error_msg}"
+                )
 
-                attempt_logs.append(LLMAttemptLog(
-                    provider=main_provider_name,
-                    model=main_model_name,
-                    attempt_number=attempt_num,
-                    status="timeout" if isinstance(exc, LLMTimeoutError) else "failed",
-                    latency_ms=round(latency_ms, 2),
-                    error=f"[{error_type}] {error_msg}"
-                ))
+                attempt_logs.append(
+                    LLMAttemptLog(
+                        provider=main_provider_name,
+                        model=main_model_name,
+                        attempt_number=attempt_num,
+                        status="timeout" if isinstance(exc, LLMTimeoutError) else "failed",
+                        latency_ms=round(latency_ms, 2),
+                        error=f"[{error_type}] {error_msg}",
+                    )
+                )
 
                 if not is_retryable:
-                    logger.info(f"Main Provider '{main_provider_name}' encountered permanent non-retryable error. Bypassing remaining {main_retry_count - attempt_idx} retries and switching to Fallback.")
+                    logger.info(
+                        f"Main Provider '{main_provider_name}' encountered permanent non-retryable error. Bypassing remaining {main_retry_count - attempt_idx} retries and switching to Fallback."
+                    )
                     break
 
                 if attempt_idx < main_retry_count:
@@ -105,7 +109,9 @@ class LLMService:
         fallback_retry_interval = self.config.FALLBACK_LLM_RETRY_INTERVAL
         fallback_timeout = request.timeout or self.config.FALLBACK_LLM_TIMEOUT
 
-        logger.warning(f"Initiating Fallback Provider '{fallback_provider_name}' (Model: '{fallback_model_name}').")
+        logger.warning(
+            f"Initiating Fallback Provider '{fallback_provider_name}' (Model: '{fallback_model_name}')."
+        )
 
         for attempt_idx in range(1 + fallback_retry_count):
             attempt_num = attempt_idx + 1
@@ -125,7 +131,7 @@ class LLMService:
                     model=fallback_model_name,
                     attempt_number=attempt_num,
                     status="success",
-                    latency_ms=round(latency_ms, 2)
+                    latency_ms=round(latency_ms, 2),
                 )
                 attempt_logs.append(log_entry)
 
@@ -141,19 +147,25 @@ class LLMService:
                 is_retryable = classify_error_retryability(exc)
                 error_type = "Retryable" if is_retryable else "Permanent"
 
-                logger.error(f"Fallback Provider '{fallback_provider_name}' Attempt {attempt_num} failed ({error_type}): {error_msg}")
+                logger.error(
+                    f"Fallback Provider '{fallback_provider_name}' Attempt {attempt_num} failed ({error_type}): {error_msg}"
+                )
 
-                attempt_logs.append(LLMAttemptLog(
-                    provider=fallback_provider_name,
-                    model=fallback_model_name,
-                    attempt_number=attempt_num,
-                    status="timeout" if isinstance(exc, LLMTimeoutError) else "failed",
-                    latency_ms=round(latency_ms, 2),
-                    error=f"[{error_type}] {error_msg}"
-                ))
+                attempt_logs.append(
+                    LLMAttemptLog(
+                        provider=fallback_provider_name,
+                        model=fallback_model_name,
+                        attempt_number=attempt_num,
+                        status="timeout" if isinstance(exc, LLMTimeoutError) else "failed",
+                        latency_ms=round(latency_ms, 2),
+                        error=f"[{error_type}] {error_msg}",
+                    )
+                )
 
                 if not is_retryable:
-                    logger.info(f"Fallback Provider '{fallback_provider_name}' encountered permanent non-retryable error. Stopping execution.")
+                    logger.info(
+                        f"Fallback Provider '{fallback_provider_name}' encountered permanent non-retryable error. Stopping execution."
+                    )
                     break
 
                 if attempt_idx < fallback_retry_count:
@@ -161,9 +173,13 @@ class LLMService:
 
         # 3. Exhausted All Providers
         total_latency = (time.perf_counter() - total_start_time) * 1000
-        error_details = "; ".join([f"[{a.provider} #{a.attempt_number} {a.status}]: {a.error}" for a in attempt_logs])
-        logger.critical(f"LLM Gateway: All providers failed after {len(attempt_logs)} total attempts. Errors: {error_details}")
-        
+        error_details = "; ".join(
+            [f"[{a.provider} #{a.attempt_number} {a.status}]: {a.error}" for a in attempt_logs]
+        )
+        logger.critical(
+            f"LLM Gateway: All providers failed after {len(attempt_logs)} total attempts. Errors: {error_details}"
+        )
+
         raise LLMAllProvidersFailedError(
             f"All configured LLM providers failed. Attempt trace: {error_details}"
         )
