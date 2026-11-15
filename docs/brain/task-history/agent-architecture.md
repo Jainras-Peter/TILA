@@ -40,4 +40,4 @@ Give TILA the same agent-facing architecture as Atlas: AGENTS.md, docs/, brain m
 
 ### Next
 
-- Implement product features starting with `/start-task auth-login` → `/analyse`.
+- Implement product features starting with `/StartTask auth-login` → `/MakePlan` → `/ImplementPlan` → `/ReviewCode` → `/TestCode` → `/Handoff`.

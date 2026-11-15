@@ -16,6 +16,6 @@ One or two sentences describing the feature outcome.
 ### YYYY-MM-DD — started
 
 - Context loaded from roadmap/gaps.
-- Next: `/analyse`
+- Next: `/MakePlan`
 
 <!-- Append new dated sections below. Do not rewrite earlier sections. -->

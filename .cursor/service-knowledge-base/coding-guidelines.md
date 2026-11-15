@@ -10,4 +10,4 @@
 - Subscriptions: `takeUntilDestroyed`.
 - Tests: pytest (backend), follow existing test layout under `tests/`.
 - Lint: `ruff` for Python; `tsc --noEmit` for Angular.
-- Feature workflow: start-task → analyse → approve → dotask → checkcode → handoff.
+- Feature workflow: StartTask → MakePlan → approve → ImplementPlan → ReviewCode → TestCode → Handoff.

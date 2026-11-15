@@ -9,9 +9,9 @@ description: Read and append TILA docs/brain task-history, roadmap, gaps, and AD
 
 1. Read `docs/brain/roadmap.md` and `docs/brain/gaps.md`.
 2. Read `docs/brain/task-history/<slug>.md` if present.
-3. Prefer `/start-task <slug>` to create from `_TEMPLATE.md` when missing.
+3. Prefer `/StartTask <slug>` to create from `_TEMPLATE.md` when missing.
 
-## After work (`/handoff`)
+## After work (`/Handoff`)
 
 Append a dated section to the task-history file:
 

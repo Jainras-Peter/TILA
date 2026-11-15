@@ -16,3 +16,13 @@ Locked flow: Router → Controller → Service → Repository. Only repositories
 Naming: collections and fields `camelCase`; closed-set values `SCREAMING_SNAKE`. Scope user data by `userId`.
 
 Memory of prior work: [docs/brain/README.md](../docs/brain/README.md).
+
+## Feature workflow
+
+1. `/StartTask <feature-slug>` — load agent docs + brain + application context for the task
+2. `/MakePlan` — read-only plan with edge cases from existing patterns
+3. Human approves the plan
+4. `/ImplementPlan` — implement only the approved plan; emit implementation report
+5. `/ReviewCode` — pre-PR architecture and bug review
+6. `/TestCode` — edge-case test matrix and test report
+7. `/Handoff` — append task-history, update roadmap/gaps/ADRs as needed

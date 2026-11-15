@@ -14,7 +14,10 @@ module.exports = {
           lightViolet: '#A855F7',
           glow: '#6366F1',
           cyanGlow: '#38BDF8',
-          textMuted: '#94A3B8'
+          textMuted: '#94A3B8',
+          app: '#F4F5FB',
+          brand: '#4A51D4',
+          brandSoft: '#EEF0FF',
         }
       },
       backgroundImage: {

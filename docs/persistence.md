@@ -12,10 +12,12 @@ Primary store: **MongoDB** via Motor. Only repositories talk to the database.
 
 ## Naming
 
-- **Collection names:** `camelCase` (`notebooks`, `documentChunks`, `refreshTokens`).
+- **Collection names:** `camelCase` (`notebooks`, `documentChunks`, `accessTokens`).
 - **Document fields:** `camelCase` (`userId`, `notebookId`, `createdAt`).
 - **Closed-set values:** `SCREAMING_SNAKE` (`PROCESSING`, `READY`, `FAILED`). Pattern: `STATUSES` list + `Status` type alias + const map where useful.
 - No dual-casing. After a rename, migrate or drop local data; do not keep legacy spellings.
+
+**Auth exception:** FastAPI Users / Beanie owns `users` and `accessTokens` with library field names (`hashed_password`, `token`, `user_id`, …). See [collections/README.md](collections/README.md) and [ADR-0003](brain/decisions/ADR-0003-fastapi-users-cookie-db.md).
 
 ## Resource ownership
 

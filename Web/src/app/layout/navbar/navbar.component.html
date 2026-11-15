@@ -9,7 +9,7 @@
     <div class="flex items-center justify-between">
       
       <!-- Logo -->
-      <a href="#" class="flex items-center gap-2.5 group">
+      <a routerLink="/" class="flex items-center gap-2.5 group">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-500 to-cyan-400 p-[1px] shadow-glow-violet group-hover:scale-105 transition-transform duration-300">
           <div class="w-full h-full bg-tila-dark rounded-[11px] flex items-center justify-center">
             <span class="font-heading font-black text-xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">T</span>
@@ -40,15 +40,15 @@
 
       <!-- Right Action Buttons -->
       <div class="hidden md:flex items-center gap-3">
-        <button 
-          type="button" 
+        <a 
+          routerLink="/auth/login"
           class="px-5 py-2.5 text-sm font-semibold text-slate-200 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full backdrop-blur-md transition-all duration-200 active:scale-95"
         >
           Log In
-        </button>
+        </a>
 
-        <button 
-          type="button" 
+        <a 
+          routerLink="/auth/register"
           class="relative group px-6 py-2.5 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-glow-violet hover:shadow-purple-500/50 transition-all duration-300 overflow-hidden active:scale-95"
         >
           <span class="relative z-10 flex items-center gap-1.5">
@@ -58,7 +58,7 @@
             </svg>
           </span>
           <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
-        </button>
+        </a>
       </div>
 
       <!-- Mobile Hamburger Button -->
@@ -94,12 +94,12 @@
         Use Cases
       </a>
       <div class="pt-2 flex flex-col gap-2.5">
-        <button class="w-full py-3 text-sm font-semibold text-slate-200 bg-white/5 border border-white/10 rounded-xl">
+        <a routerLink="/auth/login" class="w-full py-3 text-sm font-semibold text-slate-200 bg-white/5 border border-white/10 rounded-xl text-center">
           Log In
-        </button>
-        <button class="w-full py-3 text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl shadow-glow-violet">
+        </a>
+        <a routerLink="/auth/register" class="w-full py-3 text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl shadow-glow-violet text-center">
           Sign Up
-        </button>
+        </a>
       </div>
     </div>
 

@@ -15,9 +15,9 @@ Agents do not remember previous chats. This folder is the durable memory.
 
 ## Workflow
 
-1. `/start-task <slug>` — load roadmap/gaps + task-history
-2. `/analyse` → human approve → `/dotask` → `/checkcode`
-3. `/handoff` — append task-history; update roadmap/gaps/ADRs
+1. `/StartTask <slug>` — load agent docs + roadmap/gaps + task-history
+2. `/MakePlan` → human approve → `/ImplementPlan` → `/ReviewCode` → `/TestCode`
+3. `/Handoff` — append task-history; update roadmap/gaps/ADRs
 
 ## Rules
 
