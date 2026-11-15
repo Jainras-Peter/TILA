@@ -3,7 +3,7 @@ from pathlib import Path
 from dataclasses import dataclass, field
 
 
-# Path to root .env file (TILA-Backend/.env)
+# Path to API/.env (config.py lives at app/ai/gateway/config.py)
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 ENV_FILE = BASE_DIR / ".env"
 

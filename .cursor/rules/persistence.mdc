@@ -1,0 +1,13 @@
+---
+description: TILA Mongo naming and repository boundaries
+alwaysApply: true
+---
+
+When adding or changing Mongo collections, fields, or closed-set values, follow `docs/persistence.md`.
+
+- Collection names and document fields: `camelCase`.
+- Closed-set values: `SCREAMING_SNAKE` in Mongo and JSON.
+- Only repositories access Mongo. Apps, controllers, and the SPA do not.
+- User-owned queries always filter by `userId` from the authenticated principal.
+- Update `docs/collections/README.md` when adding a collection or index.
+---

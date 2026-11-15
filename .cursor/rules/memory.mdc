@@ -1,0 +1,19 @@
+---
+description: TILA agent memory — read and append task-history
+alwaysApply: true
+---
+
+Agents do not remember chats. Prior work lives in `docs/brain/`.
+
+Before a feature task:
+1. Read `docs/brain/roadmap.md`, `docs/brain/gaps.md`.
+2. Read or create `docs/brain/task-history/<feature-slug>.md` (copy `_TEMPLATE.md`).
+3. Prefer `/start-task` then `/analyse` before coding.
+
+After finishing (or when asked to hand off):
+1. Append an entry to the task-history file (never rewrite history).
+2. Update roadmap/gaps/ADRs if status or decisions changed.
+3. Prefer `/handoff`.
+
+Skill: `.agents/skills/tila-memory/SKILL.md`.
+---

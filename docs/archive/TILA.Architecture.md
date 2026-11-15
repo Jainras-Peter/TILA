@@ -86,7 +86,7 @@ app/ai/gateway/
 
 Configuration is divided into two distinct scopes:
 
-1. **Root-Level Environment Variables (`TILA-Backend/.env`)**:
+1. **Root-Level Environment Variables (`API/.env`)**:
    - `MAIN_LLM_PROVIDER`: Primary LLM provider name (e.g. `groq`).
    - `MAIN_LLM_MODEL`: Primary LLM model identifier (e.g. `llama-3.3-70b-versatile`).
    - `FALLBACK_LLM_PROVIDER`: Secondary fallback provider name (e.g. `gemini`).

@@ -1,0 +1,14 @@
+---
+description: TILA Angular structure and UI rules
+globs: Web/src/**/*.ts,Web/src/**/*.html,Web/src/**/*.scss
+alwaysApply: false
+---
+
+Read `docs/frontend.md` and `docs/design.md` before UI or feature work. Read `Web/AGENTS.md`.
+
+- Standalone components only.
+- HTTP via `core/services/api.service.ts` and feature `*-feature.service.ts` — no raw `HttpClient`/`fetch` in components.
+- Models in `core/models`. Use `takeUntilDestroyed` for subscriptions.
+- Follow landing + navbar patterns; most feature folders are placeholders.
+- Prefer shared Tailwind tokens from `docs/design.md`; avoid one-off hex and arbitrary font sizes.
+- Dev API base is `/api/v1` with `proxy.conf.json`.

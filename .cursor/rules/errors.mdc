@@ -1,0 +1,12 @@
+---
+description: TILA error envelope and typed exceptions
+alwaysApply: true
+---
+
+Follow `docs/errors.md`.
+
+- Raise domain exceptions from `app/core/exceptions.py` (or add there).
+- Map to `{ success: false, error: { code, message } }` in error middleware.
+- Codes are `SCREAMING_SNAKE`. Do not leak stack traces or secrets to clients.
+- Frontend surfaces `error.code` / `error.message` via the error interceptor / feature services.
+---
