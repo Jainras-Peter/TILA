@@ -16,33 +16,35 @@ Purpose: understand the system and produce an implementable plan using existing 
 
 Identify what must change, expected behaviour, what must stay unchanged, and whether frontend, backend, Mongo, AI/RAG, workers, or config are affected.
 
-## 2. Load context
+## 2. Load context (selective)
 
-Read as needed:
+Follow `.agents/skills/tila-context/SKILL.md` and `docs/context-routing.json`:
 
-- `.cursor/agent.md`, `.cursor/architecture.md`, relevant `.cursor/service-knowledge-base/`
-- `AGENTS.md`
-- Relevant `docs/*.md`
-- `docs/brain/roadmap.md`, `docs/brain/gaps.md`
-- `docs/brain/task-history/<feature-slug>.md` if it exists
-- Module `API/AGENTS.md` / `Web/AGENTS.md`
+- Load `default` + matched route `always` (and `optional` when needed)
+- Prefer `/StartTask` context if already loaded in this conversation
+- Do not scan the whole `docs/` tree
+- Module `API/AGENTS.md` / `Web/AGENTS.md` when touching that stack
 
-Do not scan the whole repo unnecessarily. Prefer `/StartTask` context if already loaded in this conversation.
+Output a **Context loaded** list of paths.
 
 ## 3. Find Existing Patterns
 
-Search for similar routes, services, components, schemas, tests. Prefer existing patterns over new ones. Gateway under `app/ai/gateway` is the best backend AI reference; landing/navbar for UI.
+Search for similar routes, services, components, schemas, tests. Prefer existing patterns over new ones. Gateway under `app/ai/gateway` is the best backend AI reference; landing/navbar/auth for UI.
 
 ## 4. Trace the Flow
 
-Only include layers that exist for this task:
+Only include layers that exist for this task. Prefer `docs/architecture/data-flow.md` when Auth/Documents/RAG/Chat are involved.
 
 Frontend: component → feature service → ApiService → HTTP  
 Backend: route → middleware → controller → service → repository / gateway → response
 
 ## 5–9. Logic, files, pattern, impact, risks
 
-For each important file: path, symbol, responsibility, why relevant. Identify closest pattern to copy. List blast radius, regressions, and risks.
+For each important file: path, symbol, responsibility, why relevant. Identify closest pattern to copy.
+
+## 7. Dependencies and Impact (required)
+
+Cite `docs/architecture/dependency-map.md` (and `dependency-map.generated.md` if present) when touching Auth middleware, gateway, embeddings, workers, or shared core. List blast radius explicitly.
 
 ## 10. Edge Cases (required)
 
@@ -67,17 +69,18 @@ For each change: file, what changes, pattern followed, why, deps, tests. Do not 
 ## Output Format
 
 ### 1. Task Understanding
-### 2. Relevant Project Structure
-### 3. Existing Similar Implementation
-### 4. Current End-to-End Flow
-### 5. Existing Pattern
-### 6. Relevant Files
-### 7. Dependencies and Impact
-### 8. Risks
-### 9. Edge Cases
-### 10. Recommended Implementation Plan
-### 11. Validation Strategy
+### 2. Context Loaded
+### 3. Relevant Project Structure
+### 4. Existing Similar Implementation
+### 5. Current End-to-End Flow
+### 6. Existing Pattern
+### 7. Relevant Files
+### 8. Dependencies and Impact
+### 9. Risks
+### 10. Edge Cases
+### 11. Recommended Implementation Plan
+### 12. Validation Strategy
 
 ## Final Rule
 
-STOP after the plan. No code or config changes. After human approval, next command: `/ImplementPlan`.
+STOP after the plan. No code or config changes.

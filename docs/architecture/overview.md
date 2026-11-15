@@ -55,11 +55,11 @@ src/app/
 
 **Query:** question → embed → vector search → context → LLM → answer.
 
-Document ingestion is expensive; design for background workers (see [jobs.md](jobs.md)).
+Document ingestion is expensive; design for background workers (see [jobs.md](jobs.md)). Request/ingest/RAG/chat flows: [data-flow.md](data-flow.md).
 
 ## LLM gateway
 
-Canonical door: `app/ai/gateway`. Retryable errors retry the same provider; permanent errors skip to fallback. Diagnostic routes: `GET/POST /llm` and `/api/v1/llm`. Details: [ai.md](ai.md), [archive/TILA.Architecture.md](archive/TILA.Architecture.md).
+Canonical door: `app/ai/gateway`. Retryable errors retry the same provider; permanent errors skip to fallback. Diagnostic routes: `GET/POST /llm` and `/api/v1/llm`. Details: [ai-architecture.md](ai-architecture.md), [../archive/TILA.Architecture.md](../archive/TILA.Architecture.md).
 
 ## Dependency direction
 

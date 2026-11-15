@@ -1,0 +1,121 @@
+{
+  "default": [
+    "docs/vision.md",
+    "docs/architecture/overview.md",
+    "docs/brain/roadmap.md",
+    "docs/brain/gaps.md"
+  ],
+  "routes": [
+    {
+      "id": "auth",
+      "slugs": ["auth-login", "auth", "auth-register", "auth-session"],
+      "keywords": ["login", "register", "session", "cookie", "csrf", "fastapi-users", "logout"],
+      "always": [
+        "docs/modules/auth.md",
+        "docs/architecture/backend-architecture.md",
+        "docs/architecture/errors.md",
+        "docs/architecture/config.md",
+        "docs/architecture/dependency-map.md",
+        "docs/decisions/ADR-0003-fastapi-users-cookie-db.md"
+      ],
+      "optional": [
+        "docs/architecture/frontend-architecture.md",
+        "docs/architecture/design.md",
+        "docs/architecture/data-flow.md"
+      ]
+    },
+    {
+      "id": "notebooks",
+      "slugs": ["notebook-crud", "notebooks", "notebook"],
+      "keywords": ["notebook", "workspace", "subject"],
+      "always": [
+        "docs/modules/notebooks.md",
+        "docs/modules/auth.md",
+        "docs/architecture/backend-architecture.md",
+        "docs/architecture/persistence.md",
+        "docs/architecture/collections/README.md",
+        "docs/architecture/dependency-map.md"
+      ],
+      "optional": [
+        "docs/architecture/frontend-architecture.md",
+        "docs/architecture/errors.md"
+      ]
+    },
+    {
+      "id": "documents",
+      "slugs": ["documents", "document-upload", "document-storage"],
+      "keywords": ["document", "upload", "pdf", "storage", "file"],
+      "always": [
+        "docs/modules/documents.md",
+        "docs/modules/auth.md",
+        "docs/modules/notebooks.md",
+        "docs/architecture/data-flow.md",
+        "docs/architecture/jobs.md",
+        "docs/architecture/persistence.md",
+        "docs/architecture/dependency-map.md"
+      ],
+      "optional": [
+        "docs/architecture/backend-architecture.md",
+        "docs/architecture/frontend-architecture.md"
+      ]
+    },
+    {
+      "id": "rag",
+      "slugs": ["rag-ingest", "rag", "document-processing", "embeddings"],
+      "keywords": ["rag", "embedding", "chunk", "vector", "ingest", "retrieval", "chroma", "faiss"],
+      "always": [
+        "docs/modules/rag.md",
+        "docs/modules/documents.md",
+        "docs/modules/auth.md",
+        "docs/architecture/ai-architecture.md",
+        "docs/architecture/data-flow.md",
+        "docs/architecture/jobs.md",
+        "docs/architecture/persistence.md",
+        "docs/architecture/dependency-map.md",
+        "docs/decisions/ADR-0001-llm-gateway-canonical.md"
+      ],
+      "optional": [
+        "docs/modules/chat.md",
+        "docs/architecture/backend-architecture.md"
+      ]
+    },
+    {
+      "id": "chat",
+      "slugs": ["chat", "ai-chat", "conversation"],
+      "keywords": ["chat", "message", "conversation", "tutor", "qa"],
+      "always": [
+        "docs/modules/chat.md",
+        "docs/modules/rag.md",
+        "docs/modules/auth.md",
+        "docs/architecture/ai-architecture.md",
+        "docs/architecture/data-flow.md",
+        "docs/architecture/errors.md",
+        "docs/architecture/dependency-map.md",
+        "docs/decisions/ADR-0001-llm-gateway-canonical.md"
+      ],
+      "optional": [
+        "docs/modules/documents.md",
+        "docs/architecture/frontend-architecture.md",
+        "docs/architecture/design.md"
+      ]
+    },
+    {
+      "id": "platform",
+      "slugs": ["platform", "config", "errors", "persistence", "jobs", "dev-runner", "context-engineering"],
+      "keywords": ["config", "getenv", "error envelope", "mongodb naming", "worker", "concurrently", "context routing", "dependency map"],
+      "always": [
+        "docs/architecture/config.md",
+        "docs/architecture/errors.md",
+        "docs/architecture/persistence.md",
+        "docs/architecture/jobs.md",
+        "docs/architecture/dependency-map.md",
+        "docs/architecture/backend-architecture.md"
+      ],
+      "optional": [
+        "docs/decisions/ADR-0002-dev-runner.md",
+        "docs/architecture/collections/README.md",
+        "docs/README.md"
+      ]
+    }
+  ]
+}

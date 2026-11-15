@@ -1,19 +1,20 @@
 ---
-description: TILA agent memory — read and append task-history
+description: TILA agent memory — selective context + append task-history
 alwaysApply: true
 ---
 
-Agents do not remember chats. Prior work lives in `docs/brain/`.
+Agents do not remember chats. Prior work lives in `docs/brain/`. ADRs live in `docs/decisions/`.
 
 Before a feature task:
-1. Read `docs/brain/roadmap.md`, `docs/brain/gaps.md`.
-2. Read or create `docs/brain/task-history/<feature-slug>.md` (copy `_TEMPLATE.md`).
-3. Prefer `/StartTask` then `/MakePlan` before coding.
+1. Resolve docs via `docs/context-routing.json` (skill: `.agents/skills/tila-context/SKILL.md`). Load only `default` + matched `always` (optional when needed).
+2. Read `docs/brain/roadmap.md`, `docs/brain/gaps.md`.
+3. Read or create `docs/brain/task-history/<feature-slug>.md` (copy `_TEMPLATE.md`).
+4. Prefer `/StartTask` then `/MakePlan` before coding.
+5. Skim `docs/architecture/dependency-map.md` when changing Auth, gateway, embeddings, workers, or shared core.
 
 After finishing (or when asked to hand off):
 1. Append an entry to the task-history file (never rewrite history).
-2. Update roadmap/gaps/ADRs if status or decisions changed.
+2. Update roadmap/gaps; write new ADRs under `docs/decisions/`.
 3. Prefer `/Handoff` (after `/ReviewCode` and `/TestCode` when implementing).
 
 Skill: `.agents/skills/tila-memory/SKILL.md`.
----

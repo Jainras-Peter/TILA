@@ -5,7 +5,7 @@
 - Controllers have no business logic; services do not import FastAPI for domain work.
 - LLM: `app/ai/gateway` only. Do not extend `app/ai/llm/*`.
 - Config via `app/core/config.py` / `.env` — no scattered `os.getenv`.
-- Errors: typed exceptions + envelope (`docs/errors.md`).
+- Errors: typed exceptions + envelope (`docs/architecture/errors.md`).
 - Frontend: standalone components; HTTP through `ApiService` / feature services.
 - Subscriptions: `takeUntilDestroyed`.
 - Tests: pytest (backend), follow existing test layout under `tests/`.

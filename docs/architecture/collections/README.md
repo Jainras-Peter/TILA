@@ -14,7 +14,7 @@ Mongo collections for TILA. Auth collections are owned by **FastAPI Users + Bean
 
 ### Auth naming exception
 
-`users` and `accessTokens` follow FastAPI Users / Beanie field names (`snake_case` / library conventions), not TILA camelCase. Do not dual-case. Stock adapter stores the opaque session `token` string (not a hash) — see [ADR-0003](../brain/decisions/ADR-0003-fastapi-users-cookie-db.md).
+`users` and `accessTokens` follow FastAPI Users / Beanie field names (`snake_case` / library conventions), not TILA camelCase. Do not dual-case. Stock adapter stores the opaque session `token` string (not a hash) — see [ADR-0003](../../decisions/ADR-0003-fastapi-users-cookie-db.md).
 
 `refreshTokens` from earlier plans is **not** used; sessions are `accessTokens`.
 

@@ -9,7 +9,7 @@ Use when adding or extending a REST API under `API`.
 
 ## Preconditions
 
-Read `docs/backend.md`, `docs/errors.md`, `docs/persistence.md`, and `API/AGENTS.md`.
+Read `docs/architecture/backend-architecture.md`, `docs/architecture/errors.md`, `docs/architecture/persistence.md`, and `API/AGENTS.md`.
 
 ## Steps
 
@@ -19,7 +19,7 @@ Read `docs/backend.md`, `docs/errors.md`, `docs/persistence.md`, and `API/AGENTS
 4. **Controller** — `app/controllers/<domain>_controller.py` maps request → service → response.
 5. **Route** — `app/api/v1/<domain>.py`; wire auth deps; ensure router included from `app/api/v1/router.py` / `main.py`.
 6. **Test** — service unit test and/or route test under `tests/`.
-7. **Docs** — update `docs/collections/README.md` if a collection/index changed; append task-history via `/Handoff`.
+7. **Docs** — update `docs/architecture/collections/README.md` if a collection/index changed; append task-history via `/Handoff`.
 
 ## Do not
 

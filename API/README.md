@@ -24,4 +24,4 @@ LLM gateway test: `GET /llm?prompt=hello`
 - `app/ai/gateway` — canonical LLM door (retries + fallback)
 - `app/core` — config, security, exceptions, database
 
-See [../AGENTS.md](../AGENTS.md) and [../docs/backend.md](../docs/backend.md).
+See [../AGENTS.md](../AGENTS.md) and [../docs/architecture/backend-architecture.md](../docs/architecture/backend-architecture.md).

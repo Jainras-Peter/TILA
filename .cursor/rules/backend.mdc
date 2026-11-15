@@ -4,12 +4,12 @@ globs: API/**/*.py
 alwaysApply: false
 ---
 
-Read `docs/backend.md` and `API/AGENTS.md` before editing backend code.
+Read `docs/architecture/backend-architecture.md` and `API/AGENTS.md` before editing backend code.
 
 - Flow: `api/v1` → controllers → services → repositories → `core/database`.
 - Controllers: no business logic. Services: no FastAPI domain imports.
 - Mongo only in repositories. Scope by `userId` for user-owned data.
 - LLM only via `app/ai/gateway`. Do not extend `app/ai/llm/*` or `app/factories/llm_factory.py`.
-- Raise typed exceptions from `app/core/exceptions.py`; envelope in `docs/errors.md`.
+- Raise typed exceptions from `app/core/exceptions.py`; envelope in `docs/architecture/errors.md`.
 - New settings go through `app/core/config.py` / `.env`, not scattered `os.getenv`.
 - Many files are empty scaffolds — follow the gateway as the reference implementation.

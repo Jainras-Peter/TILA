@@ -9,7 +9,7 @@ Use when adding UI under `Web`.
 
 ## Preconditions
 
-Read `docs/frontend.md`, `docs/design.md`, and `Web/AGENTS.md`. Use landing/navbar as live references.
+Read `docs/architecture/frontend-architecture.md`, `docs/architecture/design.md`, and `Web/AGENTS.md`. Use landing/navbar as live references.
 
 ## Steps
 

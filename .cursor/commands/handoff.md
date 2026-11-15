@@ -16,7 +16,7 @@ Persist what was done so the next chat/agent can continue. Uses `.agents/skills/
    - Corrections (if human overrode the AI)
 4. Update `docs/brain/roadmap.md` phase status if a phase moved.
 5. Update `docs/brain/gaps.md` if new gaps appeared or were closed.
-6. If a lasting architecture choice was made, add `docs/brain/decisions/ADR-XXXX-....md` and link it from the task-history entry.
+6. If a lasting architecture choice was made, add `docs/decisions/ADR-XXXX-....md` and link it from the task-history entry.
 7. For large features, ensure `docs/stories/<slug>/HANDOFF.md` exists or is updated.
 
 ## Output

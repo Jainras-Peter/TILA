@@ -15,7 +15,7 @@ Check evidence against:
 - Frontend HTTP only via `ApiService` / feature services
 - Naming: collections/fields `camelCase`; closed-set values `SCREAMING_SNAKE`
 - User data scoped by `userId`
-- Errors: typed exceptions + envelope per `docs/errors.md`
+- Errors: typed exceptions + envelope per `docs/architecture/errors.md`
 - Config via `app/core/config.py` / `.env` — no scattered `os.getenv`
 
 ## 3. TILA Bug Hunt

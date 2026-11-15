@@ -9,7 +9,7 @@ Use when working on ingestion, retrieval, or grounded answers.
 
 ## Preconditions
 
-Read `docs/ai.md`, `docs/jobs.md`, `docs/architecture.md`.
+Resolve context via `docs/context-routing.json` (rag route). At minimum read `docs/modules/rag.md`, `docs/architecture/ai-architecture.md`, `docs/architecture/jobs.md`, `docs/architecture/data-flow.md`, `docs/architecture/dependency-map.md`, and ADR-0001.
 
 ## Ingestion sketch
 

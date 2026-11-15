@@ -15,7 +15,7 @@
 ## Contracts
 
 - REST JSON under `/api/v1`.
-- Error envelope: `docs/errors.md`.
+- Error envelope: `docs/architecture/errors.md`.
 - LLM diagnostic payload includes `text`, `provider_used`, `attempts`, `total_latency_ms`.
 
 No gRPC/message bus yet. Prefer HTTP + eventual Redis queue over inventing a bus early.

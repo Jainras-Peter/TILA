@@ -16,5 +16,6 @@ Status values: `not-started` | `in-progress` | `partial` | `done`
 
 ## Recent
 
+- 2026-11-15: Context engineering — architecture/modules/decisions/brain, context-routing, dependency map (`context-engineering`).
 - 2026-11-15: Auth MVP — FastAPI Users Cookie + DatabaseStrategy, Angular login/register/dashboard (`auth-login`).
 - 2026-11-15: Agent architecture + `npm run dev` runner (`agent-architecture` task).

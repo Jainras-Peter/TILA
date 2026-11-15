@@ -7,9 +7,10 @@ description: Read and append TILA docs/brain task-history, roadmap, gaps, and AD
 
 ## Before work
 
-1. Read `docs/brain/roadmap.md` and `docs/brain/gaps.md`.
-2. Read `docs/brain/task-history/<slug>.md` if present.
-3. Prefer `/StartTask <slug>` to create from `_TEMPLATE.md` when missing.
+1. Resolve selective docs via `.agents/skills/tila-context/SKILL.md` and `docs/context-routing.json`.
+2. Read `docs/brain/roadmap.md` and `docs/brain/gaps.md`.
+3. Read `docs/brain/task-history/<slug>.md` if present.
+4. Prefer `/StartTask <slug>` to create from `_TEMPLATE.md` when missing.
 
 ## After work (`/Handoff`)
 
@@ -30,7 +31,7 @@ Also:
 
 - Update roadmap phase status when a phase moves.
 - Add/close items in `gaps.md`.
-- Write `docs/brain/decisions/ADR-XXXX-title.md` for lasting architecture choices.
+- Write `docs/decisions/ADR-XXXX-title.md` for lasting architecture choices.
 
 ## Rules
 

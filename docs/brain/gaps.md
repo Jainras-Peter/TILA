@@ -13,7 +13,9 @@
 - **Python version:** Pin is 3.12 (`.python-version`). Host may have 3.14; RAG libs often lack 3.14 wheels.
 - **Frontend tests:** `npm run test:web` needs Chrome/Karma setup; may fail until test runner is configured.
 - **Alembic present:** `alembic.ini` exists while SoR is Mongo — clarify or remove in a later cleanup.
+- **Pending ADRs:** storage strategy (local vs S3) and background-job runner (in-process vs Redis/ARQ/Celery) are not decided — do not invent production locks without an ADR under `docs/decisions/`.
+- **Dependency tooling:** Import Linter / Pydeps / Madge / Dependency Cruiser deferred; use `docs/architecture/dependency-map.md` + `scripts/scan-api-imports.py` for now.
 
 ## Closed
 
-- (none yet beyond documenting agent architecture)
+- (none yet beyond documenting agent architecture / context engineering)

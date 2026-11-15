@@ -4,8 +4,8 @@ Takes precedence for files under `Web/`. Root rules: [../AGENTS.md](../AGENTS.md
 
 ## Read first
 
-1. [../docs/frontend.md](../docs/frontend.md)
-2. [../docs/design.md](../docs/design.md) before UI changes
+1. [../docs/architecture/frontend-architecture.md](../docs/architecture/frontend-architecture.md)
+2. [../docs/architecture/design.md](../docs/architecture/design.md) before UI changes
 3. Landing + navbar under `src/app/features/landing` and `src/app/layout/navbar` as the best live UI patterns
 
 ## Rules

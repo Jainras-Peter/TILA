@@ -6,7 +6,7 @@
 
 Backend: `app/core/config.py` (pydantic-settings `Settings` loaded from `API/.env`).
 
-Gateway today still loads keys in `app/ai/gateway/config.py`. New settings must go through core config; migrate gateway to read from core as a follow-up (see [brain/gaps.md](brain/gaps.md)).
+Gateway today still loads keys in `app/ai/gateway/config.py`. New settings must go through core config; migrate gateway to read from core as a follow-up (see [../brain/gaps.md](../brain/gaps.md)).
 
 ## Env file
 

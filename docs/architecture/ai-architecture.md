@@ -18,11 +18,11 @@
 | Retryable | 429, 408, 5xx, timeout, network | Retry same provider up to configured count |
 | Permanent | 400, 401, 403, 404 | Skip remaining retries; switch to fallback |
 
-See [archive/TILA.Architecture.md](archive/TILA.Architecture.md) for sequence diagrams.
+See [../archive/TILA.Architecture.md](../archive/TILA.Architecture.md) for sequence diagrams.
 
 ## Overlapping scaffold (do not extend)
 
-These empty/legacy paths overlap the gateway. Recorded in [brain/gaps.md](brain/gaps.md). Do **not** add new code there:
+These empty/legacy paths overlap the gateway. Recorded in [../brain/gaps.md](../brain/gaps.md). Do **not** add new code there:
 
 - `app/ai/llm/*`
 - `app/factories/llm_factory.py`
